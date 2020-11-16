@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BackLogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get("/backlog", [BackLogController::class, "index"]);
+Route::get("/backlog/add-user-story", [BackLogController::class, "getAddUserStory"]);
+Route::post("/backlog/add-user-story", [BackLogController::class, "postAddUserStory"]);
