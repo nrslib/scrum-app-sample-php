@@ -12,6 +12,10 @@ use Scrum\Application\Service\BackLog\Query\BackLogQueryServiceInterface;
 
 class BackLogController extends Controller
 {
+    public function __construct(){
+        $this->middleware("auth");
+    }
+
     public function index(BackLogQueryServiceInterface $backLogQueryService)
     {
         $userStories = $backLogQueryService->getAllUserStory();

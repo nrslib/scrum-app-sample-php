@@ -38,7 +38,9 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Scrum\\": "packages/scrum"
+            "Scrum\\": "packages/scrum",
+            "Authorization\\": "packages/auth",
+            "Basic\\": "packages/basic"
         }
     },
     "autoload-dev": {
