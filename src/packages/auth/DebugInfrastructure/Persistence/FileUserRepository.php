@@ -23,10 +23,10 @@ class FileUserRepository implements UserRepositoryInterface
     function find(UserId $id): ?User
     {
         $user = $this->load($id->getValue());
-        if (isset($user)) {
-            return $user;
-        } else {
+        if (is_null($user)) {
             return null;
+        } else {
+            return $user;
         }
     }
 

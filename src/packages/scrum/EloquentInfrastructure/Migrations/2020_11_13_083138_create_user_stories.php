@@ -17,6 +17,7 @@ class CreateUserStories extends Migration
             $table->uuid("id");
             $table->timestamps();
             $table->string("story");
+            $table->string("author");
             $table->string("demo")->nullable();
             $table->integer("estimate")->nullable();
             $table->integer("seq")->nullable();

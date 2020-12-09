@@ -4,7 +4,7 @@
 namespace App\Http\Controllers;
 
 
-use Authorization\Application\Service\User\UserService;
+use Authorization\Application\Service\User\UserApplicationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -20,16 +20,24 @@ class AuthController extends Controller
         return redirect()->intended('/');
     }
 
-    public function postRegister(Request $request, UserService $service)
+    public function postRegister(Request $request, UserApplicationService $service)
     {
         $validator = $this->validator($request->all());
         if ($validator->fails()) {
-            return view("register");
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput($request->all());
         }
 
         $email = $request->get("email");
         $password = $request->get("password");
-        $service->create($email, $password);
+        $result = $service->create($email, $password);
+
+        if ($result->isError()) {
+            $message = "Email already registered.";
+            return view("register", compact("message"));
+        }
 
         return redirect()->intended("/");
     }

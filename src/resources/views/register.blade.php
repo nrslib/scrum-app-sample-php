@@ -1,7 +1,8 @@
 @extends("layouts.no-header")
-@section("title", "Login")
+@section("title", "Register")
 @section("content")
-    <h1>Login</h1>
+    <h1>Register</h1>
+    <p>{{isset($message) ? $message : ""}}</p>
     <form action="/auth/register" method="post">
         {{csrf_field()}}
         <label>

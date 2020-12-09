@@ -4,6 +4,8 @@
 namespace Scrum\Domain\Models\UserStories;
 
 
+use Scrum\Domain\Models\User\UserId;
+
 /**
  * Class UserStory
  * @package nrslib\ScrumDomain\Models\UserStories
@@ -14,6 +16,8 @@ class UserStory
     private $id;
     /** @var string */
     private $story;
+    /** @var UserId */
+    private $author;
     /** @var string|null */
     private $demo;
     /** @var int|null */
@@ -25,14 +29,16 @@ class UserStory
      * UserStory constructor.
      * @param UserStoryId $id
      * @param string $story
+     * @param UserId $author
      * @param string|null $demo
      * @param int|null $estimate
      * @param int|null $seq
      */
-    public function __construct(UserStoryId $id, string $story, string $demo = null, int $estimate = null, int $seq = null)
+    public function __construct(UserStoryId $id, string $story, UserId $author, string $demo = null, int $estimate = null, int $seq = null)
     {
         $this->id = $id;
         $this->story = $story;
+        $this->author = $author;
         $this->demo = $demo;
         $this->estimate = $estimate;
         $this->seq = $seq;
@@ -52,6 +58,14 @@ class UserStory
     public function getStory(): string
     {
         return $this->story;
+    }
+
+    /**
+     * @return UserId
+     */
+    public function getAuthor(): UserId
+    {
+        return $this->author;
     }
 
     /**

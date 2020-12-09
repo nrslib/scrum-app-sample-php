@@ -9,8 +9,9 @@ use Basic\Transaction\Transaction;
 class NopTransaction implements Transaction
 {
 
-    function scope(callable $transactionScope)
+    function scope(callable $transactionScope): ?object
     {
+        return $transactionScope();
     }
 
     function begin()

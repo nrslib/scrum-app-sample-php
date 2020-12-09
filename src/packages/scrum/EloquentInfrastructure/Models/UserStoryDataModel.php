@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property integer $id
  * @property string $story
+ * @property string $author
  * @property string|null $demo
  * @property integer|null $estimate
  * @property integer|null $seq

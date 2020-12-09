@@ -23,6 +23,7 @@ class EloquentUserStoryRepository implements UserStoryRepositoryInterface
             [ "id" => $userStory->getId()->getValue() ],
             [
                 "story" => $userStory->getStory(),
+                "author" => $userStory->getAuthor()->getValue(),
                 "demo" => $userStory->getDemo(),
                 "estimate" => $userStory->getEstimate(),
                 "seq" => $userStory->getSeq()

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Lib\Transaction;
+namespace App\Lib\Transaction;
 
 
 use Basic\Transaction\Transaction;
@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\DB;
 
 class LaravelDbTransaction implements Transaction
 {
-    function scope(callable $transactionScope)
+    function scope(callable $transactionScope): ?object
     {
-        DB::transaction($transactionScope);
+        return DB::transaction($transactionScope);
     }
 
     function begin()

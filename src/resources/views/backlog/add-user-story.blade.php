@@ -6,6 +6,7 @@
 
 <form action="/backlog/add-user-story" method="post">
     {{csrf_field()}}
+    <input type="text" name="story" required>
     <button type="submit">Submit</button>
 </form>
 

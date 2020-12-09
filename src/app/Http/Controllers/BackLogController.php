@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Scrum\Application\Service\BackLog\AddUserStoryCommand;
 use Scrum\Application\Service\BackLog\BackLogApplicationService;
 use Scrum\Application\Service\BackLog\Query\BackLogQueryServiceInterface;
+use Scrum\Application\Service\BackLog\Query\UserStorySummary;
 
 class BackLogController extends Controller
 {
@@ -17,17 +18,32 @@ class BackLogController extends Controller
     {
         $userStories = $backLogQueryService->getAllUserStory();
 
-        $userStoriesViewModels = [];
-        foreach ($userStories as $userStory){
-            $vm = new UserStoryViewModel(
-                $userStory->id,
-                $userStory->story,
-                $userStory->demo,
-                $userStory->estimate,
-                $userStory->seq
+        uasort($userStories, function (UserStorySummary $l, UserStorySummary $r) {
+            $lIsNull = is_null($l->seq);
+            $rIsNull = is_null($r->seq);
+
+            if ($lIsNull && $rIsNull) {
+                return 0;
+            }
+            if ($lIsNull) {
+                return -1;
+            }
+            if ($rIsNull) {
+                return 1;
+            }
+
+            return $l->seq - $r->seq;
+        });
+
+        $userStoriesViewModels = array_map(function (UserStorySummary $summary){
+            return new UserStoryViewModel(
+                $summary->id,
+                $summary->story,
+                $summary->author,
+                $summary->demo,
+                $summary->estimate
             );
-            array_push($userStoriesViewModels, $vm);
-        }
+        }, $userStories);
 
         $viewModel = new BackLogIndexViewModel($userStoriesViewModels);
 
@@ -40,6 +56,10 @@ class BackLogController extends Controller
 
     public function postAddUserStory(Request $request, BackLogApplicationService $applicationService)
     {
+        $request->validate([
+            "story" => "required"
+        ]);
+
         $story = $request->input("story");
 
         $command = new AddUserStoryCommand($story);

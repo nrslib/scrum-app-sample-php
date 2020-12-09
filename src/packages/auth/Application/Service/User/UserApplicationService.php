@@ -4,6 +4,8 @@
 namespace Authorization\Application\Service\User;
 
 
+use Authorization\Application\Service\User\UserCreate\UserCreateError;
+use Authorization\Application\Service\User\UserCreate\UserCreateResult;
 use Authorization\Domain\Users\Email;
 use Authorization\Domain\Users\User;
 use Authorization\Domain\Users\UserFactoryInterface;
@@ -15,7 +17,7 @@ use Basic\Transaction\Transaction;
  * Class UserService
  * @package Authorization\Application\Service\User
  */
-class UserService
+class UserApplicationService
 {
     /** @var Transaction */
     private $transaction;
@@ -41,17 +43,19 @@ class UserService
      * @param string $email
      * @param string $password
      */
-    public function create(string $email, string $password): void
+    public function create(string $email, string $password): UserCreateResult
     {
-        $this->transaction->scope(function () use($email, $password) {
+        return $this->transaction->scope(function () use($email, $password) {
             $user = $this->userFactory->create($email, $password);
 
             $found = $this->userRepository->findByEmail($user->getEmail());
             if (!is_null($found)) {
-                throw new AlreadyExistsException("The email already using.");
+                return UserCreateResult::fail(UserCreateError::EMAIL_ALREADY_USING);
             }
 
             $this->userRepository->save($user);
+
+            return UserCreateResult::success($user->getId());
         });
     }
 

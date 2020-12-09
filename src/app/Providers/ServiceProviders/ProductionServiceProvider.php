@@ -4,20 +4,23 @@
 namespace App\Providers\ServiceProviders;
 
 
+use App\Lib\Context\AuthUserContext;
+use App\Lib\Transaction\LaravelDbTransaction;
 use App\Providers\OriginalUserProvider;
 use Authorization\Application\Service\Authenticate\AuthenticateService;
-use Authorization\Application\Service\User\UserService;
+use Authorization\Application\Service\User\UserApplicationService;
 use Authorization\DebugInfrastructure\Persistence\DebugUserFactory;
 use Authorization\DebugInfrastructure\Persistence\FileUserRepository;
 use Authorization\Domain\Users\UserFactoryInterface;
 use Authorization\Domain\Users\UserRepositoryInterface;
+use Basic\DebugSupport\Infrastructure\FileRepositoryConfig;
 use Basic\Transaction\Transaction;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Hashing\BcryptHasher;
-use Lib\Transaction\LaravelDbTransaction;
 use Scrum\Application\Service\BackLog\BackLogApplicationService;
 use Scrum\Application\Service\BackLog\Query\BackLogQueryServiceInterface;
+use Scrum\Domain\Models\User\UserContextInterface;
 use Scrum\Domain\Models\UserStories\UserStoryRepositoryInterface;
 use Scrum\EloquentInfrastructure\Persistence\UserStories\EloquentUserStoryRepository;
 use Scrum\EloquentInfrastructure\QueryServices\EloquentBackLogQueryService;
@@ -38,7 +41,7 @@ class ProductionServiceProvider implements Provider
 
     public function register()
     {
-        $this->registerDbConfig();
+        $this->registerLibrary();
         $this->registerProviders();
         $this->registerUtilities();
         $this->registerApplications();
@@ -47,10 +50,13 @@ class ProductionServiceProvider implements Provider
 
     function boot()
     {
+        $debugPersistenceDirectoryFullPath = storage_path("debug\\persistence");
+        FileRepositoryConfig::$basicDirectoryFullPath = $debugPersistenceDirectoryFullPath;
     }
 
-    private function registerDbConfig() {
+    private function registerLibrary() {
         $this->app->bind(Transaction::class, LaravelDbTransaction::class);
+        $this->app->bind(UserContextInterface::class, AuthUserContext::class);
     }
 
     private function registerProviders() {
@@ -67,7 +73,7 @@ class ProductionServiceProvider implements Provider
 
         // Auth
         $this->app->bind(AuthenticateService::class);
-        $this->app->bind(UserService::class);
+        $this->app->bind(UserApplicationService::class);
     }
 
     private function registerInfrastructures()

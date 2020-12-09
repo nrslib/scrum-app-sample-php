@@ -13,197 +13,306 @@
     <table id="6" parent="2" name="failed_jobs"/>
     <table id="7" parent="2" name="migrations"/>
     <table id="8" parent="2" name="password_resets"/>
-    <table id="9" parent="2" name="sqlite_master">
+    <table id="9" parent="2" name="personal_access_tokens"/>
+    <table id="10" parent="2" name="sessions"/>
+    <table id="11" parent="2" name="sqlite_master">
       <System>1</System>
     </table>
-    <table id="10" parent="2" name="sqlite_sequence">
+    <table id="12" parent="2" name="sqlite_sequence">
       <System>1</System>
     </table>
-    <table id="11" parent="2" name="user_stories"/>
-    <table id="12" parent="2" name="users"/>
-    <column id="13" parent="6" name="id">
+    <table id="13" parent="2" name="user_stories"/>
+    <table id="14" parent="2" name="users"/>
+    <column id="15" parent="6" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="14" parent="6" name="uuid">
+    <column id="16" parent="6" name="uuid">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="15" parent="6" name="connection">
+    <column id="17" parent="6" name="connection">
       <Position>3</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="16" parent="6" name="queue">
+    <column id="18" parent="6" name="queue">
       <Position>4</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="17" parent="6" name="payload">
+    <column id="19" parent="6" name="payload">
       <Position>5</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="18" parent="6" name="exception">
+    <column id="20" parent="6" name="exception">
       <Position>6</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="19" parent="6" name="failed_at">
+    <column id="21" parent="6" name="failed_at">
       <Position>7</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <index id="20" parent="6" name="failed_jobs_uuid_unique">
+    <index id="22" parent="6" name="failed_jobs_uuid_unique">
       <ColNames>uuid</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="21" parent="6">
+    <key id="23" parent="6">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="22" parent="7" name="id">
+    <column id="24" parent="7" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="23" parent="7" name="migration">
+    <column id="25" parent="7" name="migration">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="24" parent="7" name="batch">
+    <column id="26" parent="7" name="batch">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="25" parent="7">
+    <key id="27" parent="7">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="26" parent="8" name="email">
+    <column id="28" parent="8" name="email">
       <Position>1</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="27" parent="8" name="token">
+    <column id="29" parent="8" name="token">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="28" parent="8" name="created_at">
+    <column id="30" parent="8" name="created_at">
       <Position>3</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <index id="29" parent="8" name="password_resets_email_index">
+    <index id="31" parent="8" name="password_resets_email_index">
       <ColNames>email</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <column id="30" parent="9" name="type">
-      <Position>1</Position>
-      <DataType>text|0s</DataType>
-    </column>
-    <column id="31" parent="9" name="name">
-      <Position>2</Position>
-      <DataType>text|0s</DataType>
-    </column>
-    <column id="32" parent="9" name="tbl_name">
-      <Position>3</Position>
-      <DataType>text|0s</DataType>
-    </column>
-    <column id="33" parent="9" name="rootpage">
-      <Position>4</Position>
-      <DataType>int|0s</DataType>
-    </column>
-    <column id="34" parent="9" name="sql">
-      <Position>5</Position>
-      <DataType>text|0s</DataType>
-    </column>
-    <column id="35" parent="10" name="name">
-      <Position>1</Position>
-    </column>
-    <column id="36" parent="10" name="seq">
-      <Position>2</Position>
-    </column>
-    <column id="37" parent="11" name="id">
-      <Position>1</Position>
-      <DataType>varchar|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="38" parent="11" name="created_at">
-      <Position>2</Position>
-      <DataType>datetime|0s</DataType>
-    </column>
-    <column id="39" parent="11" name="updated_at">
-      <Position>3</Position>
-      <DataType>datetime|0s</DataType>
-    </column>
-    <column id="40" parent="11" name="story">
-      <Position>4</Position>
-      <DataType>varchar|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="41" parent="11" name="demo">
-      <Position>5</Position>
-      <DataType>varchar|0s</DataType>
-    </column>
-    <column id="42" parent="11" name="estimate">
-      <Position>6</Position>
-      <DataType>integer|0s</DataType>
-    </column>
-    <column id="43" parent="11" name="seq">
-      <Position>7</Position>
-      <DataType>integer|0s</DataType>
-    </column>
-    <column id="44" parent="12" name="id">
+    <column id="32" parent="9" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="45" parent="12" name="name">
+    <column id="33" parent="9" name="tokenable_type">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="46" parent="12" name="email">
+    <column id="34" parent="9" name="tokenable_id">
       <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="9" name="name">
+      <Position>4</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="47" parent="12" name="email_verified_at">
-      <Position>4</Position>
-      <DataType>datetime|0s</DataType>
-    </column>
-    <column id="48" parent="12" name="password">
+    <column id="36" parent="9" name="token">
       <Position>5</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="49" parent="12" name="remember_token">
+    <column id="37" parent="9" name="abilities">
       <Position>6</Position>
-      <DataType>varchar|0s</DataType>
+      <DataType>text|0s</DataType>
     </column>
-    <column id="50" parent="12" name="created_at">
+    <column id="38" parent="9" name="last_used_at">
       <Position>7</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <column id="51" parent="12" name="updated_at">
+    <column id="39" parent="9" name="created_at">
       <Position>8</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <index id="52" parent="12" name="users_email_unique">
+    <column id="40" parent="9" name="updated_at">
+      <Position>9</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <index id="41" parent="9" name="personal_access_tokens_token_unique">
+      <ColNames>token</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="42" parent="9" name="personal_access_tokens_tokenable_type_tokenable_id_index">
+      <ColNames>tokenable_type
+tokenable_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="43" parent="9">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="44" parent="10" name="id">
+      <Position>1</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="10" name="user_id">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="46" parent="10" name="ip_address">
+      <Position>3</Position>
+      <DataType>varchar|0s</DataType>
+    </column>
+    <column id="47" parent="10" name="user_agent">
+      <Position>4</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="48" parent="10" name="payload">
+      <Position>5</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="49" parent="10" name="last_activity">
+      <Position>6</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="50" parent="10" name="sqlite_autoindex_sessions_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="51" parent="10" name="sessions_user_id_index">
+      <ColNames>user_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <index id="52" parent="10" name="sessions_last_activity_index">
+      <ColNames>last_activity</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="53" parent="10">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_sessions_1</UnderlyingIndexName>
+    </key>
+    <column id="54" parent="11" name="type">
+      <Position>1</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="55" parent="11" name="name">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="56" parent="11" name="tbl_name">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="57" parent="11" name="rootpage">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="58" parent="11" name="sql">
+      <Position>5</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="59" parent="12" name="name">
+      <Position>1</Position>
+    </column>
+    <column id="60" parent="12" name="seq">
+      <Position>2</Position>
+    </column>
+    <column id="61" parent="13" name="id">
+      <Position>1</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="62" parent="13" name="created_at">
+      <Position>2</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="63" parent="13" name="updated_at">
+      <Position>3</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="64" parent="13" name="story">
+      <Position>4</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="65" parent="13" name="author">
+      <Position>5</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="66" parent="13" name="demo">
+      <Position>6</Position>
+      <DataType>varchar|0s</DataType>
+    </column>
+    <column id="67" parent="13" name="estimate">
+      <Position>7</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="68" parent="13" name="seq">
+      <Position>8</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="69" parent="14" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="70" parent="14" name="name">
+      <Position>2</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="71" parent="14" name="email">
+      <Position>3</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="72" parent="14" name="email_verified_at">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="73" parent="14" name="password">
+      <Position>5</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="74" parent="14" name="remember_token">
+      <Position>6</Position>
+      <DataType>varchar|0s</DataType>
+    </column>
+    <column id="75" parent="14" name="created_at">
+      <Position>7</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="76" parent="14" name="updated_at">
+      <Position>8</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <index id="77" parent="14" name="users_email_unique">
       <ColNames>email</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="53" parent="12">
+    <key id="78" parent="14">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>

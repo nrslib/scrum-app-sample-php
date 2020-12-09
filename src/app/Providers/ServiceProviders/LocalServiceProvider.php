@@ -4,9 +4,10 @@
 namespace App\Providers\ServiceProviders;
 
 
+use App\Lib\Context\AuthUserContext;
 use App\Providers\OriginalUserProvider;
 use Authorization\Application\Service\Authenticate\AuthenticateService;
-use Authorization\Application\Service\User\UserService;
+use Authorization\Application\Service\User\UserApplicationService;
 use Authorization\DebugInfrastructure\Persistence\DebugUserFactory;
 use Authorization\DebugInfrastructure\Persistence\FileUserRepository;
 use Authorization\Domain\Users\UserFactoryInterface;
@@ -19,9 +20,10 @@ use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Hashing\BcryptHasher;
 use Scrum\Application\Service\BackLog\BackLogApplicationService;
 use Scrum\Application\Service\BackLog\Query\BackLogQueryServiceInterface;
+use Scrum\DebugInfrastructure\Persistence\UserStories\FileUserStoryRepository;
+use Scrum\DebugInfrastructure\QueryServices\FileBackLogQueryService;
+use Scrum\Domain\Models\User\UserContextInterface;
 use Scrum\Domain\Models\UserStories\UserStoryRepositoryInterface;
-use Scrum\EloquentInfrastructure\Persistence\UserStories\EloquentUserStoryRepository;
-use Scrum\EloquentInfrastructure\QueryServices\EloquentBackLogQueryService;
 
 class LocalServiceProvider implements Provider
 {
@@ -39,7 +41,7 @@ class LocalServiceProvider implements Provider
 
     public function register()
     {
-        $this->registerDbConfig();
+        $this->registerLibrary();
         $this->registerProviders();
         $this->registerUtilities();
         $this->registerApplications();
@@ -52,8 +54,9 @@ class LocalServiceProvider implements Provider
         FileRepositoryConfig::$basicDirectoryFullPath = $debugPersistenceDirectoryFullPath;
     }
 
-    private function registerDbConfig() {
+    private function registerLibrary() {
         $this->app->bind(Transaction::class, NopTransaction::class);
+        $this->app->bind(UserContextInterface::class, AuthUserContext::class);
     }
 
     private function registerProviders() {
@@ -70,13 +73,14 @@ class LocalServiceProvider implements Provider
 
         // Auth
         $this->app->bind(AuthenticateService::class);
-        $this->app->bind(UserService::class);
+        $this->app->bind(UserApplicationService::class);
     }
 
     private function registerInfrastructures()
     {
-        $this->app->bind(BackLogQueryServiceInterface::class, EloquentBackLogQueryService::class);
-        $this->app->bind(UserStoryRepositoryInterface::class, EloquentUserStoryRepository::class);
+        $this->app->bind(BackLogQueryServiceInterface::class, FileBackLogQueryService::class);
+        $this->app->bind(UserStoryRepositoryInterface::class, FileUserStoryRepository::class);
+        $this->app->bind(FileUserStoryRepository::class);
 
         // Auth
         $this->app->bind(UserFactoryInterface::class, DebugUserFactory::class);

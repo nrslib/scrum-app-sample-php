@@ -6,7 +6,7 @@ namespace App\Providers;
 
 use App\Models\Authorization\UserAdapter;
 use Authorization\Application\Service\Authenticate\AuthenticateService;
-use Authorization\Application\Service\User\UserService;
+use Authorization\Application\Service\User\UserApplicationService;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
 
@@ -14,15 +14,15 @@ class OriginalUserProvider implements UserProvider
 {
     /** @var AuthenticateService */
     private $authenticateService;
-    /** @var UserService */
+    /** @var UserApplicationService */
     private $userService;
 
     /**
      * OriginalUserProvider constructor.
      * @param AuthenticateService $authenticateService
-     * @param UserService $userService
+     * @param UserApplicationService $userService
      */
-    public function __construct(AuthenticateService $authenticateService, UserService $userService)
+    public function __construct(AuthenticateService $authenticateService, UserApplicationService $userService)
     {
         $this->authenticateService = $authenticateService;
         $this->userService = $userService;
