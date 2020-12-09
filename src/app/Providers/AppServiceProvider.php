@@ -2,12 +2,11 @@
 
 namespace App\Providers;
 
+use App\Providers\ServiceProviders\LocalServiceProvider;
+use App\Providers\ServiceProviders\ProductionServiceProvider;
+use App\Providers\ServiceProviders\Provider;
+use Basic\DebugSupport\Infrastructure\FileRepositoryConfig;
 use Illuminate\Support\ServiceProvider;
-use Scrum\Application\Service\BackLog\BackLogApplicationService;
-use Scrum\Application\Service\BackLog\Query\BackLogQueryServiceInterface;
-use Scrum\Domain\Models\UserStories\UserStoryRepositoryInterface;
-use Scrum\EloquentInfrastructure\Persistence\UserStories\EloquentUserStoryRepository;
-use Scrum\EloquentInfrastructure\QueryServices\EloquentBackLogQueryService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,12 +17,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Applications
-        $this->app->bind(BackLogApplicationService::class);
-
-        // Infrastructures
-        $this->app->bind(BackLogQueryServiceInterface::class, EloquentBackLogQueryService::class);
-        $this->app->bind(UserStoryRepositoryInterface::class, EloquentUserStoryRepository::class);
+        $provider = $this->provider();
+        $provider->register();
     }
 
     /**
@@ -33,6 +28,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $provider = $this->provider();
+        $provider->boot();
+    }
+
+    private function provider(): Provider
+    {
+        $env = config("app.env");
+        switch ($env) {
+            case "local":
+                return new LocalServiceProvider($this->app);
+            case "production":
+                return new ProductionServiceProvider($this->app);
+            default:
+                throw new \OutOfBoundsException();
+        }
     }
 }

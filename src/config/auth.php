@@ -1,5 +1,10 @@
 <?php
 
+$isLocal = config("app.env") === "local";
+$userProvider = [
+    "driver" => "original"
+];
+
 return [
 
     /*
@@ -66,10 +71,12 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
+        "users" => $userProvider
+
+//        'users' => [
+//            'driver' => 'eloquent',
+//            'model' => App\Models\User::class,
+//        ],
 
         // 'users' => [
         //     'driver' => 'database',

@@ -2,11 +2,15 @@
 @section("title", "Login")
 @section("content")
     <h1>Login</h1>
-    <form action="/auth/login" method="post">
+    <form action="/auth/register" method="post">
         {{csrf_field()}}
         <label>
             <input type="email" name="email" value="">
             Email
+        </label>
+        <label>
+            <input type="text" name="name" value="">
+            Name
         </label>
         <label>
             <input type="password" name="password">
