@@ -18,24 +18,7 @@ class BackLogController extends Controller
     {
         $userStories = $backLogQueryService->getAllUserStory();
 
-        uasort($userStories, function (UserStorySummary $l, UserStorySummary $r) {
-            $lIsNull = is_null($l->seq);
-            $rIsNull = is_null($r->seq);
-
-            if ($lIsNull && $rIsNull) {
-                return 0;
-            }
-            if ($lIsNull) {
-                return -1;
-            }
-            if ($rIsNull) {
-                return 1;
-            }
-
-            return $l->seq - $r->seq;
-        });
-
-        $userStoriesViewModels = array_map(function (UserStorySummary $summary){
+        $userStoriesViewModels = collect($userStories)->map(function (UserStorySummary $summary){
             return new UserStoryViewModel(
                 $summary->id,
                 $summary->story,
@@ -43,7 +26,7 @@ class BackLogController extends Controller
                 $summary->demo,
                 $summary->estimate
             );
-        }, $userStories);
+        })->all();
 
         $viewModel = new BackLogIndexViewModel($userStoriesViewModels);
 

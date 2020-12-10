@@ -27,24 +27,41 @@ class EloquentBackLogQueryService implements BackLogQueryServiceInterface
 
     function getAllUserStory(): array
     {
-        $all = UserStoryDataModel::all();
-        $stories= $all->map(function (UserStoryDataModel $elem) {
-            $id = $elem->id;
-            $story = $elem->story;
-            $author = $elem->author;
-            $demo = $elem->demo;
-            $estimate = $elem->estimate;
-            $seq = $elem->seq;
+        $stories = UserStoryDataModel::all()
+            ->map(function (UserStoryDataModel $elem) {
+                $id = $elem->id;
+                $story = $elem->story;
+                $author = $elem->author;
+                $demo = $elem->demo;
+                $estimate = $elem->estimate;
+                $seq = $elem->seq;
 
-            return new UserStorySummary(
-                $id,
-                $story,
-                $author,
-                $demo,
-                $estimate,
-                $seq
-            );
-        })->all();
+                return new UserStorySummary(
+                    $id,
+                    $story,
+                    $author,
+                    $demo,
+                    $estimate,
+                    $seq
+                );
+            })
+            ->sort(function (UserStorySummary $l, UserStorySummary $r) {
+                $lIsNull = is_null($l->seq);
+                $rIsNull = is_null($r->seq);
+
+                if ($lIsNull && $rIsNull) {
+                    return 0;
+                }
+                if ($lIsNull) {
+                    return -1;
+                }
+                if ($rIsNull) {
+                    return 1;
+                }
+
+                return $l->seq - $r->seq;
+            })
+            ->all();
 
         return $stories;
     }
