@@ -4,6 +4,7 @@
 namespace Scrum\EloquentInfrastructure\Persistence\UserStories;
 
 
+use Scrum\Domain\Models\User\UserId;
 use Scrum\Domain\Models\UserStories\UserStory;
 use Scrum\Domain\Models\UserStories\UserStoryId;
 use Scrum\Domain\Models\UserStories\UserStoryRepositoryInterface;
@@ -11,10 +12,23 @@ use Scrum\EloquentInfrastructure\Models\UserStoryDataModel;
 
 class EloquentUserStoryRepository implements UserStoryRepositoryInterface
 {
-
-    public function find(UserStoryId $id): UserStory
+    public function find(UserStoryId $id): ?UserStory
     {
-        // TODO: Implement find() method.
+        $data = UserStoryDataModel::where("id", $id->getValue())
+            ->first();
+
+        if (is_null($data)) {
+            return null;
+        }
+
+        return new UserStory(
+            new UserStoryId($data->id),
+            $data->story,
+            new UserId($data->author),
+            $data->demo,
+            $data->estimate,
+            $data->seq
+        );
     }
 
     public function save(UserStory $userStory): void
