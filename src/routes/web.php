@@ -32,6 +32,7 @@ Route::post("/logout", [AuthController::class, "postLogout"])->name("logout");
 
 Route::group(["middleware" => "auth"], function () {
     Route::get("/backlog", [BackLogController::class, "index"]);
+    Route::get("/backlog/user-story/{id}", [BackLogController::class, "getUserStory"]);
     Route::get("/backlog/add-user-story", [BackLogController::class, "getAddUserStory"]);
     Route::post("/backlog/add-user-story", [BackLogController::class, "postAddUserStory"]);
 });

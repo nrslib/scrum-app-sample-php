@@ -8,7 +8,6 @@ trait FileRepository
 {
     /** @var FileStore */
     private $store;
-    private $keyToData;
 
     /** @var null|string */
     protected $identifier = null;

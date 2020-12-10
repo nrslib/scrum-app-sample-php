@@ -26,7 +26,7 @@ class EloquentUserStoryRepository implements UserStoryRepositoryInterface
             $data->story,
             new UserId($data->author),
             $data->demo,
-            $data->estimate,
+            $data->estimation,
             $data->seq
         );
     }
@@ -39,7 +39,7 @@ class EloquentUserStoryRepository implements UserStoryRepositoryInterface
                 "story" => $userStory->getStory(),
                 "author" => $userStory->getAuthor()->getValue(),
                 "demo" => $userStory->getDemo(),
-                "estimate" => $userStory->getEstimate(),
+                "estimation" => $userStory->getEstimation(),
                 "seq" => $userStory->getSeq()
             ]
         );

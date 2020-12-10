@@ -81,7 +81,10 @@ class ProductionServiceProvider implements Provider
 
     private function registerInfrastructures()
     {
-        $this->app->bind(BackLogQueryServiceInterface::class, EloquentBackLogQueryService::class);
+        $this->app->bind(
+            BackLogQueryServiceInterface::class,
+            EloquentBackLogQueryService::class
+        );
         $this->app->bind(UserStoryRepositoryInterface::class, EloquentUserStoryRepository::class);
 
         // Auth

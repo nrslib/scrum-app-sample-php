@@ -2,6 +2,7 @@
 
 namespace Scrum\Application\Service\BackLog;
 
+use Basic\Exception\NotFoundException;
 use Basic\Transaction\Transaction;
 use Scrum\Domain\Models\User\UserContextInterface;
 use Scrum\Domain\Models\UserStories\UserStory;
@@ -30,7 +31,13 @@ class BackLogApplicationService
         $this->userStoryRepository = $userStoryRepository;
     }
 
-    public function addUserStory(AddUserStoryCommand $command)
+    public function getUserStory(string $aId): ?UserStory
+    {
+        $id = new UserStoryId($aId);
+        return $this->userStoryRepository->find($id);
+    }
+
+    public function addUserStory(AddUserStoryCommand $command): void
     {
         $this->transaction->scope(function () use ($command) {
             $id = new UserStoryId(uniqid());
@@ -41,6 +48,20 @@ class BackLogApplicationService
                 $this->userContext->getId(),
                 $command->getDemo()
             );
+            $this->userStoryRepository->save($story);
+        });
+    }
+
+    public function estimateUserStory(string $aId, int $estimation): void
+    {
+        $this->transaction->scope(function () use ($aId, $estimation) {
+            $id = new UserStoryId($aId);
+            $story = $this->userStoryRepository->find($id);
+            if (is_null($story)) {
+                throw new NotFoundException($aId . " not found.");
+            }
+
+            $story->estimate($estimation);
             $this->userStoryRepository->save($story);
         });
     }

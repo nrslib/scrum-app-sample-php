@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $story
  * @property string $author
  * @property string|null $demo
- * @property integer|null $estimate
+ * @property integer|null $estimation
  * @property integer|null $seq
  */
 class UserStoryDataModel extends Model

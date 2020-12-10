@@ -18,6 +18,7 @@ use App\Http\ViewModels\BackLog\BackLogIndexViewModel;
                 <th>Demo</th>
                 <th>Estimate</th>
                 <th>Author</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -25,8 +26,9 @@ use App\Http\ViewModels\BackLog\BackLogIndexViewModel;
                 <tr>
                     <td>{{$story->story}}</td>
                     <td>{{$story->demo}}</td>
-                    <td>{{$story->estimate}}</td>
+                    <td>{{$story->estimation}}</td>
                     <td>{{$story->authorId}}</td>
+                    <td><a href="/backlog/user-story/{{$story->id}}">Detail</td>
                 </tr>
             @endforeach
             </tbody>

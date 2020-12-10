@@ -21,7 +21,7 @@ class UserStory
     /** @var string|null */
     private $demo;
     /** @var int|null */
-    private $estimate;
+    private $estimation;
     /** @var int|null */
     private $seq;
 
@@ -31,16 +31,20 @@ class UserStory
      * @param string $story
      * @param UserId $author
      * @param string|null $demo
-     * @param int|null $estimate
+     * @param int|null $estimation
      * @param int|null $seq
      */
-    public function __construct(UserStoryId $id, string $story, UserId $author, string $demo = null, int $estimate = null, int $seq = null)
+    public function __construct(UserStoryId $id, string $story, UserId $author, string $demo = null, int $estimation = null, int $seq = null)
     {
+        if (strlen($story) == 0) {
+            throw new \InvalidArgumentException("story is empty.");
+        }
+
         $this->id = $id;
         $this->story = $story;
         $this->author = $author;
         $this->demo = $demo;
-        $this->estimate = $estimate;
+        $this->estimation = $estimation;
         $this->seq = $seq;
     }
 
@@ -79,9 +83,9 @@ class UserStory
     /**
      * @return int|null
      */
-    public function getEstimate(): ?int
+    public function getEstimation(): ?int
     {
-        return $this->estimate;
+        return $this->estimation;
     }
 
     /**
@@ -90,5 +94,10 @@ class UserStory
     public function getSeq(): ?int
     {
         return $this->seq;
+    }
+
+    public function estimate(int $estimation)
+    {
+        $this->estimation = $estimation;
     }
 }

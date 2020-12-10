@@ -13,7 +13,7 @@ class UserStoryViewModel
     /** @var string */
     public $demo;
     /** @var int|null */
-    public $estimate;
+    public $estimation;
     /** @var string */
     public $authorId;
 
@@ -23,14 +23,14 @@ class UserStoryViewModel
      * @param string $story
      * @param string $authorId
      * @param string|null $demo
-     * @param int|null $estimate
+     * @param int|null $estimation
      */
-    public function __construct(string $id, string $story, string $authorId, ?string $demo, ?int $estimate)
+    public function __construct(string $id, string $story, string $authorId, ?string $demo, ?int $estimation)
     {
         $this->id = $id;
         $this->story = $story;
         $this->authorId = $authorId;
         $this->demo = $demo;
-        $this->estimate = $estimate;
+        $this->estimation = $estimation;
     }
 }

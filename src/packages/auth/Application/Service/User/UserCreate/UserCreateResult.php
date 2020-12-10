@@ -13,22 +13,22 @@ class UserCreateResult
         return new UserCreateResult($id, null);
     }
 
-    public static function fail(int $errorCode)
+    public static function fail(string $errorCode)
     {
         return new UserCreateResult(null, $errorCode);
     }
 
     /** @var UserId */
     private $createdUserId;
-    /** @var int|null */
+    /** @var string|null */
     private $errorCode;
 
     /**
      * UserCreateResult constructor.
      * @param UserId|null $createdUserId
-     * @param int|null $errorCode
+     * @param string|null $errorCode
      */
-    private function __construct(?UserId $createdUserId, ?int $errorCode)
+    private function __construct(?UserId $createdUserId, string $errorCode)
     {
         $this->createdUserId = $createdUserId;
         $this->errorCode = $errorCode;

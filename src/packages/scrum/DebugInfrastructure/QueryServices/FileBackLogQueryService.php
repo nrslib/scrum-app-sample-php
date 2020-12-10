@@ -33,7 +33,7 @@ class FileBackLogQueryService implements BackLogQueryServiceInterface
                 $story->getStory(),
                 $story->getAuthor()->getValue(),
                 $story->getDemo(),
-                $story->getEstimate(),
+                $story->getEstimation(),
                 $story->getSeq()
             );
         }, $all);

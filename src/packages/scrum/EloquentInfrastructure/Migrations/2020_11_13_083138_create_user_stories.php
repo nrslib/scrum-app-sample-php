@@ -19,7 +19,7 @@ class CreateUserStories extends Migration
             $table->string("story");
             $table->string("author");
             $table->string("demo")->nullable();
-            $table->integer("estimate")->nullable();
+            $table->integer("estimation")->nullable();
             $table->integer("seq")->nullable();
         });
     }
