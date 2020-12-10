@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function postLogin(Request $request){
+    public function postLogin(Request $request)
+    {
         $credentials = $request->only('email', 'password');
         if (!Auth::attempt($credentials)) {
             return view("login");
@@ -42,13 +43,15 @@ class AuthController extends Controller
         return redirect()->intended("/");
     }
 
-    public function postLogout() {
+    public function postLogout()
+    {
         Auth::logout();
 
         return redirect("/");
     }
 
-    private function validator(array $data) {
+    private function validator(array $data)
+    {
         return Validator::make($data, [
             "name" => ["required", "string", "max:255"],
             "email" => ["required", "string", "email", "max:255"],

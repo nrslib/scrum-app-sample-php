@@ -20,7 +20,7 @@ class EloquentUserStoryRepository implements UserStoryRepositoryInterface
     public function save(UserStory $userStory): void
     {
         UserStoryDataModel::updateOrCreate(
-            [ "id" => $userStory->getId()->getValue() ],
+            ["id" => $userStory->getId()->getValue()],
             [
                 "story" => $userStory->getStory(),
                 "author" => $userStory->getAuthor()->getValue(),

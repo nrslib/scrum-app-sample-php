@@ -24,7 +24,8 @@ class PasswordHasher
         return $this->hasher->check($password, $hash->getValue());
     }
 
-    public function checkByUser(string $password, User $user): bool {
+    public function checkByUser(string $password, User $user): bool
+    {
         return $this->check($password, $user->getPasswordHash());
     }
 

@@ -11,7 +11,10 @@ interface Transaction
      * @return mixed
      */
     function scope(callable $transactionScope): ?object;
+
     function begin();
+
     function commit();
+
     function rollback();
 }

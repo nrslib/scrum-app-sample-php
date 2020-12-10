@@ -18,7 +18,7 @@ class BackLogController extends Controller
     {
         $userStories = $backLogQueryService->getAllUserStory();
 
-        $userStoriesViewModels = collect($userStories)->map(function (UserStorySummary $summary){
+        $userStoriesViewModels = collect($userStories)->map(function (UserStorySummary $summary) {
             return new UserStoryViewModel(
                 $summary->id,
                 $summary->story,
@@ -33,7 +33,8 @@ class BackLogController extends Controller
         return view("backlog/index", compact("viewModel"));
     }
 
-    public function getAddUserStory() {
+    public function getAddUserStory()
+    {
         return view("backlog/add-user-story");
     }
 

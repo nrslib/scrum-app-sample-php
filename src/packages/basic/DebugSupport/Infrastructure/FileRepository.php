@@ -4,8 +4,6 @@
 namespace Basic\DebugSupport\Infrastructure;
 
 
-use Illuminate\Support\Facades\Cache;
-
 trait FileRepository
 {
     /** @var FileStore */
@@ -20,22 +18,26 @@ trait FileRepository
         $this->store = new FileStore();
     }
 
-    public function loadAll() {
+    public function loadAll()
+    {
         return $this->store->getAll($this->id());
     }
 
-    protected function store($key, $data) {
+    protected function store($key, $data)
+    {
         $this->store->put($this->id(), $key, $data);
     }
 
-    protected function load($key) {
-         return $this->store->get($this->id(), $key);
+    protected function load($key)
+    {
+        return $this->store->get($this->id(), $key);
     }
 
-    private function id() {
-        if (is_null($this->identifier)){
+    private function id()
+    {
+        if (is_null($this->identifier)) {
             return __CLASS__;
-        }else{
+        } else {
             return $this->identifier;
         }
     }

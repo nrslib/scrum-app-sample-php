@@ -22,7 +22,8 @@ class AuthenticateService
         $this->userRepository = $userRepository;
     }
 
-    public function authenticate(string $aEmail, string $password): bool {
+    public function authenticate(string $aEmail, string $password): bool
+    {
         $email = new Email($aEmail);
         $user = $this->userRepository->findByEmail($email);
         if (is_null($user)) {

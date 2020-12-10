@@ -3,7 +3,6 @@
 namespace Scrum\Application\Service\BackLog;
 
 use Basic\Transaction\Transaction;
-use Illuminate\Support\Str;
 use Scrum\Domain\Models\User\UserContextInterface;
 use Scrum\Domain\Models\UserStories\UserStory;
 use Scrum\Domain\Models\UserStories\UserStoryId;

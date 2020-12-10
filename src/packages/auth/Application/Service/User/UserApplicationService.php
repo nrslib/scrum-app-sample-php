@@ -45,7 +45,7 @@ class UserApplicationService
      */
     public function create(string $email, string $password): UserCreateResult
     {
-        return $this->transaction->scope(function () use($email, $password) {
+        return $this->transaction->scope(function () use ($email, $password) {
             $user = $this->userFactory->create($email, $password);
 
             $found = $this->userRepository->findByEmail($user->getEmail());

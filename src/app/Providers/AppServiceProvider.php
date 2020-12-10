@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Providers\ServiceProviders\LocalServiceProvider;
 use App\Providers\ServiceProviders\ProductionServiceProvider;
 use App\Providers\ServiceProviders\Provider;
-use Basic\DebugSupport\Infrastructure\FileRepositoryConfig;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

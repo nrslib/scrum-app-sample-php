@@ -7,8 +7,6 @@ namespace Scrum\EloquentInfrastructure\QueryServices;
 use Scrum\Application\Service\BackLog\Query\BackLogQueryServiceInterface;
 use Scrum\Application\Service\BackLog\Query\UserStorySummary;
 use Scrum\Domain\Models\User\UserContextInterface;
-use Scrum\Domain\Models\UserStories\UserStory;
-use Scrum\Domain\Models\UserStories\UserStoryId;
 use Scrum\EloquentInfrastructure\Models\UserStoryDataModel;
 
 class EloquentBackLogQueryService implements BackLogQueryServiceInterface

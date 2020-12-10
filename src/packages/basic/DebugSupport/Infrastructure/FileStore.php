@@ -14,25 +14,27 @@ class FileStore
         $this->files = new FileSystem();
     }
 
-    public function get($id, $key) {
+    public function get($id, $key)
+    {
         $filePath = $this->fileFullPathFromId($id);
-        if (!$this->files->exists($filePath)){
+        if (!$this->files->exists($filePath)) {
             return null;
         }
 
         $data = $this->files->get($filePath);
         $array = unserialize($data);
 
-        if (!array_key_exists($key, $array)){
+        if (!array_key_exists($key, $array)) {
             return null;
         }
 
         return $array[$key];
     }
 
-    public function getAll($id){
+    public function getAll($id)
+    {
         $filePath = $this->fileFullPathFromId($id);
-        if (!$this->files->exists($filePath)){
+        if (!$this->files->exists($filePath)) {
             return array();
         }
 
@@ -42,13 +44,14 @@ class FileStore
         return $array;
     }
 
-    public function put($id, $key, $data) {
+    public function put($id, $key, $data)
+    {
         $this->ensureDirectoryExists($this->directoryFullPath());
         $filePath = $this->fileFullPathFromId($id);
-        if ($this->files->exists($filePath)){
+        if ($this->files->exists($filePath)) {
             $savedData = $this->files->get($filePath);
             $array = unserialize($savedData);
-        }else{
+        } else {
             $array = array();
         }
 
@@ -67,11 +70,13 @@ class FileStore
         }
     }
 
-    private function fileFullPathFromId(string $filePath){
+    private function fileFullPathFromId(string $filePath)
+    {
         return $this->directoryFullPath() . "\\" . $filePath . ".dat";
     }
 
-    private function directoryFullPath() {
+    private function directoryFullPath()
+    {
         $basicDirectoryPath = FileRepositoryConfig::$basicDirectoryFullPath;
         return $basicDirectoryPath;
     }

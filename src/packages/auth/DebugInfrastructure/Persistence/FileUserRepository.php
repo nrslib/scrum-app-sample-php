@@ -37,7 +37,7 @@ class FileUserRepository implements UserRepositoryInterface
             return $x->getEmail()->equals($email);
         });
 
-        if (count($targets) <= 0){
+        if (count($targets) <= 0) {
             return null;
         }
 

@@ -54,16 +54,19 @@ class LocalServiceProvider implements Provider
         FileRepositoryConfig::$basicDirectoryFullPath = $debugPersistenceDirectoryFullPath;
     }
 
-    private function registerLibrary() {
+    private function registerLibrary()
+    {
         $this->app->bind(Transaction::class, NopTransaction::class);
         $this->app->bind(UserContextInterface::class, AuthUserContext::class);
     }
 
-    private function registerProviders() {
+    private function registerProviders()
+    {
         $this->app->bind(OriginalUserProvider::class);
     }
 
-    private function registerUtilities() {
+    private function registerUtilities()
+    {
         $this->app->bind(Hasher::class, BcryptHasher::class);
     }
 

@@ -16,9 +16,9 @@ class FileUserStoryRepository implements UserStoryRepositoryInterface
     public function find(UserStoryId $id): ?UserStory
     {
         $story = $this->load($id->getValue());
-        if (is_null($story)){
+        if (is_null($story)) {
             return null;
-        } else{
+        } else {
             return $story;
         }
     }

@@ -22,7 +22,8 @@ abstract class StringValueObject
         return $this->value;
     }
 
-    public function equals(StringValueObject $arg) {
+    public function equals(StringValueObject $arg)
+    {
         $thisValue = $this->value;
         $thisGetValue = $this->getValue();
         $argValue = $arg->value;

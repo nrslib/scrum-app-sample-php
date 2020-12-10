@@ -4,8 +4,6 @@
 namespace Authorization\Domain\Users;
 
 
-use Mockery\Generator\StringManipulation\Pass\Pass;
-
 class User
 {
     /** @var UserId */
