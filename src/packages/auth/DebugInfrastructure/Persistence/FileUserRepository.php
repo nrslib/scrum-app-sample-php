@@ -8,7 +8,7 @@ use Authorization\Domain\Users\Email;
 use Authorization\Domain\Users\User;
 use Authorization\Domain\Users\UserId;
 use Authorization\Domain\Users\UserRepositoryInterface;
-use Basic\DebugSupport\Infrastructure\FileRepository;
+use nrslib\RepositorySupports\FileRepository;
 
 class FileUserRepository implements UserRepositoryInterface
 {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "49b5c945dd476395ffa2c96fc3d5698f",
+    "content-hash": "971466437b5816c8148dbafc1e2890c7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1390,6 +1390,41 @@
                 "php"
             ],
             "time": "2020-09-26T10:30:38+00:00"
+        },
+        {
+            "name": "nrslib/repository-supports",
+            "version": "0.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nrslib/repository-support-php.git",
+                "reference": "4280511224984eeeaf62e42a478711a51e9465fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nrslib/repository-support-php/zipball/4280511224984eeeaf62e42a478711a51e9465fa",
+                "reference": "4280511224984eeeaf62e42a478711a51e9465fa",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "nrslib\\RepositorySupports\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "nrslib"
+                }
+            ],
+            "description": "Support creating repository.",
+            "time": "2020-12-11T03:26:33+00:00"
         },
         {
             "name": "opis/closure",

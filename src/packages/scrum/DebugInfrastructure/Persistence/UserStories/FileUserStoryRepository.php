@@ -4,7 +4,7 @@
 namespace Scrum\DebugInfrastructure\Persistence\UserStories;
 
 
-use Basic\DebugSupport\Infrastructure\FileRepository;
+use nrslib\RepositorySupports\FileRepository;
 use Scrum\Domain\Models\UserStories\UserStory;
 use Scrum\Domain\Models\UserStories\UserStoryId;
 use Scrum\Domain\Models\UserStories\UserStoryRepositoryInterface;
