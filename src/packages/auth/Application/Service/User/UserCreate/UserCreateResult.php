@@ -13,7 +13,7 @@ class UserCreateResult
         return new UserCreateResult($id, null);
     }
 
-    public static function fail(int $errorCode)
+    public static function fail(?int $errorCode)
     {
         return new UserCreateResult(null, $errorCode);
     }
@@ -28,7 +28,7 @@ class UserCreateResult
      * @param UserId|null $createdUserId
      * @param int|null $errorCode
      */
-    private function __construct(?UserId $createdUserId, int $errorCode)
+    private function __construct(?UserId $createdUserId, ?int $errorCode)
     {
         $this->createdUserId = $createdUserId;
         $this->errorCode = $errorCode;
