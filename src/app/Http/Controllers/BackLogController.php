@@ -6,15 +6,12 @@ namespace App\Http\Controllers;
 
 use App\Http\ViewModels\BackLog\BackLogIndexViewModel;
 use App\Http\ViewModels\BackLog\UserStoryViewModel;
-use App\Lib\Context\AuthUserContext;
-use App\Lib\Transaction\LaravelDbTransaction;
 use Basic\Exception\NotFoundException;
 use Illuminate\Http\Request;
 use Scrum\Application\Service\BackLog\AddUserStoryCommand;
 use Scrum\Application\Service\BackLog\BackLogApplicationService;
 use Scrum\Application\Service\BackLog\Query\BackLogQueryServiceInterface;
 use Scrum\Application\Service\BackLog\Query\UserStorySummary;
-use Scrum\EloquentInfrastructure\Persistence\UserStories\EloquentUserStoryRepository;
 
 class BackLogController extends Controller
 {
@@ -60,7 +57,7 @@ class BackLogController extends Controller
         return view("backlog/add-user-story");
     }
 
-    public function postAddUserStory(Request $request)
+    public function postAddUserStory(Request $request, BackLogApplicationService $applicationService)
     {
         $request->validate([
             "story" => "required"
@@ -69,17 +66,12 @@ class BackLogController extends Controller
         $story = $request->input("story");
 
         $command = new AddUserStoryCommand($story);
-        $applicationService = new BackLogApplicationService(
-            new LaravelDbTransaction(),
-            new AuthUserContext(),
-            new EloquentUserStoryRepository()
-        );
         $applicationService->addUserStory($command);
 
         return redirect()->action([BackLogController::class, "index"]);
     }
 
-    public function estimateUserStory(string $id, Request $request, BackLogApplicationService  $applicationService)
+    public function estimateUserStory(string $id, Request $request, BackLogApplicationService $applicationService)
     {
         $estimation = $request->get("estimation");
         $applicationService->estimateUserStory($id, $estimation);
